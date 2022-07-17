@@ -11,9 +11,10 @@ Cartão de crédito para alunos da FIAP.
 
 - H2 Database
   -> Utilizamos o H2 Database por atender as necessidade de armazenamento proposto no nosso projeto. É um banco de dados embutido e de facil integração
-  com o Spring. Integramos com o H2 utilizando JPA, caso seja necessário utilizar outro solução de banco de dados, teremos a 
+  com o Spring. Integramos com o H2 utilizando Spring Data JPA, caso seja necessário utilizar outro solução de banco de dados, teremos a 
   possibilidade de migração sem grandes problemas. 
 
+- Spring Data JPA
 
 ### Como rodar o projeto
 
@@ -37,20 +38,3 @@ Cartão de crédito para alunos da FIAP.
 - User: sa 
 - Pass: password
 
-
-### Já implementado:
-
-- Lógica para load do arquivo via spring batch
-- entidades students e transactions com relacionamento
-- Swagger api para as entidades 
-
-### Falta fazer:
-
-- Extrato
-- Testes unitários e integrados
-- Criar massa de transações ]
-- Atualizar Readme com instruçoes para rodar o projeto e com a justificativa das ferramentas escolhidas
-
-> Nesse projeto utilizamos como banco de dados o H2 por se tratar do banco de dados open source mais utilizado no mundo, com alta confiabilidade, performance e fácil utilização.
->
-> Utilizamos também ... ... ... 

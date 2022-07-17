@@ -1,6 +1,7 @@
 package br.com.fiap.studentcard.models;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,7 +25,14 @@ public class Transaction {
     @Column(nullable = false)
     private BigDecimal transactionValue;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
+    @Column(nullable = false)
+    private String store;
+
+    @Column(nullable = false)
+    private LocalDateTime created;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     @JsonBackReference
     private Student studentTransaction;
@@ -61,6 +69,22 @@ public class Transaction {
         this.id = id;
         this.transactionValue = transactionValue;
         this.studentTransaction = studentTransaction;
+    }
+
+    public String getStore() {
+        return store;
+    }
+
+    public void setStore(String store) {
+        this.store = store;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 
     @Override

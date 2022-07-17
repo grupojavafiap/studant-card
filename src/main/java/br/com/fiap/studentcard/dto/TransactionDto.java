@@ -12,6 +12,8 @@ public class TransactionDto {
     @NotNull
     private long studentId;
 
+    @NotNull
+    private String store;
 
     public BigDecimal getTransactionValue() {
         return this.transactionValue;
@@ -29,5 +31,15 @@ public class TransactionDto {
         this.studentId = studentId;
     }
 
+    public String getStore() {
+        return store;
+    }
+
+    public void setStore(String store) {
+        this.store = store;
+    }
+
+
+    
     
 }
