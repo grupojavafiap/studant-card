@@ -1,4 +1,19 @@
-# student-card
+# STUDENT CARD
+Cartão de crédito para alunos da FIAP.
+
+
+### Tecnologias Utilizadas
+
+- Spring Batch 
+   -> Solução para processamento batch.
+
+- Spring Mail
+
+- H2 Database
+  -> Utilizamos o H2 Database por atender as necessidade de armazenamento proposto no nosso projeto. É um banco de dados embutido e de facil integração
+  com o Spring. Integramos com o H2 utilizando JPA, caso seja necessário utilizar outro solução de banco de dados, teremos a 
+  possibilidade de migração sem grandes problemas. 
+
 
 ### Como rodar o projeto
 
@@ -8,19 +23,12 @@
 
 -  Acesse o swagger -> http://localhost:8080/swagger-ui/index.html
 
-
-### Tecnologias Utilizadas
-- Java 11
-- Spring Batch 
-- Spring Mail
-- H2 Database
-
-
 ### Processameto do Arquivo
 - O procesamento do arquivo esta configurado para ser executado na inicialização da aplicação.
 
 
 ### Acessar documentação da API
+-  Acesse o swagger -> http://localhost:8080/swagger-ui/index.html
 
 
 ### Acessar console do banco de dados 
@@ -39,11 +47,8 @@
 ### Falta fazer:
 
 - Extrato
-- Transformar o caminho absoluto do arquivo em um resource
-- Swagger api para as entidades 
 - Testes unitários e integrados
-- Criar massa de transações 
-- Melhorar documentação swagger
+- Criar massa de transações ]
 - Atualizar Readme com instruçoes para rodar o projeto e com a justificativa das ferramentas escolhidas
 
 > Nesse projeto utilizamos como banco de dados o H2 por se tratar do banco de dados open source mais utilizado no mundo, com alta confiabilidade, performance e fácil utilização.

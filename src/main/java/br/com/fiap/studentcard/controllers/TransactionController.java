@@ -16,10 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.fiap.studentcard.dto.TransactionDto;
 import br.com.fiap.studentcard.models.Transaction;
 import br.com.fiap.studentcard.services.TransactionService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.SwaggerDefinition;
+import io.swagger.annotations.Tag;
 
 @RestController
 @RequestMapping("/transaction")
-//@Tag(name = "Transação", description = "Recursos da API de Transações")
+@SwaggerDefinition(tags = {@Tag(name = "Transações", description = "Recursos das Transações do cartão de crédito")})
 public class TransactionController {
     
     final TransactionService transactionService;
@@ -28,6 +33,10 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
+    @ApiOperation(value = "Consultar estudantes", notes = "Endpoint responsável por retornar uma lista de estudantes")
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "Retorna todos os estudantes cadastrados ")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Transaction>> findById(@PathVariable long id) 
     {
@@ -39,4 +48,13 @@ public class TransactionController {
     {
         return ResponseEntity.status(HttpStatus.CREATED).body(transactionService.save(transactionDto));
     }    
+
+
+    @PostMapping("random-transations")
+    public ResponseEntity<Transaction> generateRandomTransations() throws Exception
+    {
+        transactionService.randomTransactions();
+
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }  
 }

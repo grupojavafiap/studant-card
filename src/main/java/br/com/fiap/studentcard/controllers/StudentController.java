@@ -22,10 +22,12 @@ import br.com.fiap.studentcard.services.StudentService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.SwaggerDefinition;
+import io.swagger.annotations.Tag;
 
 @RestController
 @RequestMapping("/student")
-//@Tag(name = "Alunos", description = "Recursos da API de Alunos/Clientes")
+@SwaggerDefinition(tags = {@Tag(name = "Alunos", description = "Recursos da API de Alunos/Clientes")})
 public class StudentController {
     
     final StudentService studentService;
@@ -34,7 +36,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @ApiOperation(value = "Consulta estudantes", notes = "Endpoint responsável por retornar uma lista de estudantes")
+    @ApiOperation(value = "Consultar estudantes", notes = "Endpoint responsável por retornar uma lista de estudantes")
     @ApiResponses({
         @ApiResponse(code = 200, message = "Retorna todos os estudantes cadastrados ")
     })
