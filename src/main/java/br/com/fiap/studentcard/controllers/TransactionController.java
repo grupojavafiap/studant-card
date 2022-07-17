@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,9 +34,9 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @ApiOperation(value = "Consultar estudantes", notes = "Endpoint responsável por retornar uma lista de estudantes")
+    @ApiOperation(value = "Consultar transações", notes = "Endpoint responsável por retornar uma transação a partir do ID da transação")
     @ApiResponses({
-        @ApiResponse(code = 200, message = "Retorna todos os estudantes cadastrados ")
+        @ApiResponse(code = 200, message = "Retorna a transações cadastradas ")
     })
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Transaction>> findById(@PathVariable long id) 

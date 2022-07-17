@@ -37,9 +37,8 @@ public class StudentService {
         return studentRepository.findById(id);
     }
 
-    public void deleleById(long id)
+    public void deleteById(long id)
     {
         studentRepository.deleteById(id);
-    }
-    
+    }    
 }

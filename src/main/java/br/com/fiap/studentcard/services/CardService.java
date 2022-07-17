@@ -1,25 +1,13 @@
 package br.com.fiap.studentcard.services;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
-import br.com.fiap.studentcard.dto.StatementDto;
-import br.com.fiap.studentcard.models.Student;
 import br.com.fiap.studentcard.models.Transaction;
 import br.com.fiap.studentcard.repositories.StudentRepository;
 import br.com.fiap.studentcard.repositories.TransactionRepository;
