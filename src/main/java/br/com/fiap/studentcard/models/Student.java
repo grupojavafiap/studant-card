@@ -34,6 +34,10 @@ public class Student {
     private List<Transaction> transactions;
 
 
+    public Student() {}
+
+    public Student(long id) { this.id = id; }
+
     public String getName() {
         return this.name;
     }
@@ -74,6 +78,5 @@ public class Student {
         this.transactions = transactions;
     }
 
-    public Student() {
-    }
+
 }

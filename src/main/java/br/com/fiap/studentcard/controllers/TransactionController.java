@@ -1,5 +1,6 @@
 package br.com.fiap.studentcard.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -50,7 +51,10 @@ public class TransactionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(transactionService.save(transactionDto));
     }    
 
-
+    @ApiOperation(value = "Gera transações com valores aleatórias", notes = "Endpoint responsável por gerar massa de dados para a tabela de Transação")
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "Retorna ")
+    })
     @PostMapping("random-transations")
     public ResponseEntity<Transaction> generateRandomTransations(@RequestParam int pageSize) throws Exception
     {
@@ -58,4 +62,14 @@ public class TransactionController {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }  
+
+    @ApiOperation(value = "Extrato de lançamentos", notes = "Endpoint responsável por retornar uma lista de transações a partir do identificador do estudante.")
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "Retorna a lista de transações de um estudante")
+    })
+    @GetMapping("/statement/{studentId}")
+    public ResponseEntity<List<Transaction>> findStatement(@PathVariable long studentId) 
+    {
+        return ResponseEntity.status(HttpStatus.OK).body(transactionService.findTransactionByStudentId(studentId));
+    }
 }

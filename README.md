@@ -38,3 +38,13 @@ Cartão de crédito para alunos da FIAP.
 - User: sa 
 - Pass: password
 
+
+
+### Endpoint para gerar massa de transações
+Acionando o endpoint `​/transaction​/random-transations` é gerado até 10 transações para cada estudante cadastro na base.
+
+
+### Endpoint para consulta extrato de transação de um estudante
+Acionando o endpoint `​/transaction​/statement​/{studentId}` retorna todas as transações de um estudante.
+
+

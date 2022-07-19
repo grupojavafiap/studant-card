@@ -6,10 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.studentcard.dto.TransactionDto;
@@ -61,35 +58,55 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
     
+
+    public List<Transaction> findTransactionByStudentId(Long studentId) 
+    {
+        logger.info("[findTransactionByStudentId] - Consultando extrato do ESTUDANTE {}", studentId);
+
+        return transactionRepository.findByStudentTransaction(new Student(studentId));
+    }
+
+
+
     /**
      * Gera transação para cada estudante cadastrado na base 
      * de dados com valores randomicos. 
      */
     public void randomTransactions(int pageSize)
     { 
-        Pageable limit = PageRequest.of(1,pageSize);
-        
-        var students = studentRepository.findAll(limit);
+        var students = studentRepository.findAll();
 
         String stores[] = {"Americanas", "FIAP Coffee", "Nerdstore", "Google Cloud", "Starbucks", "Burger Dev"};
 
-        students.stream().forEach(student -> {
-            var transaction = new Transaction();
-            var transactionValue = BigDecimal.valueOf(random.nextDouble());
-            var storeId = random.nextInt(5);
+        students.stream().forEach(student -> saveAllTransaction(student, stores)); 
+    }
 
-            transaction.setTransactionValue(transactionValue);
-            transaction.setStudentTransaction(student);
-            transaction.setStore(stores[storeId]);
-            transaction.setCreated(LocalDateTime.now());
+    private  void saveAllTransaction(Student student, String stores[])
+    {
+        var amountTransaction = random.nextInt(10);
+        var transactions = new ArrayList<Transaction>();
 
-            logger.info("Gerando transacao para {} no valor de {} ", student.getName(), transactionValue);
+        for(int i = 0; i < amountTransaction; i++)
+        {
+            transactions.add(newRandomTransaction(student, stores));
+        }
 
-            List<Transaction> transactionsList = new ArrayList<Transaction>();
-            transactionsList.add(transaction);
-            student.setTransactions(transactionsList);
+        transactionRepository.saveAll(transactions);
+    }
 
-            transactionRepository.save(transaction);
-        }); 
+    private Transaction newRandomTransaction(Student student, String stores[])
+    {
+        var transaction = new Transaction();
+        var transactionValue = BigDecimal.valueOf(random.nextDouble() * 10);
+        var storeId = random.nextInt(6);
+
+        transaction.setTransactionValue(transactionValue);
+        transaction.setStudentTransaction(student);
+        transaction.setStore(stores[storeId]);
+        transaction.setCreated(LocalDateTime.now());
+
+        logger.info("Gerando transacao para {} no valor de {} ", student.getName(), transactionValue);
+
+        return transaction;
     }
 }
